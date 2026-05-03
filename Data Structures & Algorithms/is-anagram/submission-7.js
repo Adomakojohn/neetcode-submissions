@@ -1,0 +1,34 @@
+class Solution {
+    /**
+     * @param {string} s
+     * @param {string} t
+     * @return {boolean}
+     */
+    isAnagram(s, t) {
+        if(s.length !== t.length){
+            return false;
+        }
+
+        let trackMap = new Map();
+
+        for(let char of s){
+            trackMap.set(char, (trackMap.get(char) || 0)+1)
+        }
+
+        for(let char of t){
+            if(!trackMap.has(char)){
+                return false;
+            }
+            const newCount= trackMap.get(char) - 1;
+            if(newCount < 0){
+                return false;
+            }
+            trackMap.set(char, newCount);
+        }
+
+        return true;
+
+
+
+    }
+}
